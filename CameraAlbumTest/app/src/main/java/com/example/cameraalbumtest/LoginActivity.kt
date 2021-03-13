@@ -23,7 +23,7 @@ val client: OkHttpClient=OkHttpClient.Builder().connectTimeout(5,TimeUnit.SECOND
     .readTimeout(5,TimeUnit.SECONDS).writeTimeout(5,TimeUnit.SECONDS).build()   //设置各种超时都是5秒钟
 
         var retrofit =
-            Retrofit.Builder().baseUrl("http://192.168.1.4:8080/untitled1_war/servlet/").client(
+            Retrofit.Builder().baseUrl("http://192.168.43.146:8080/untitled1_war/servlet/").client(
                 client)
                 .addConverterFactory(GsonConverterFactory.create()).build()
     }

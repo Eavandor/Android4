@@ -34,7 +34,7 @@ class UploadActivity2 {
             MediaType.parse("multipart/form-data"), FolderActivity2.username //发送文件名
         )
         var retrofit =
-            Retrofit.Builder().baseUrl("http://192.168.1.4:8080/untitled1_war/servlet/")
+            Retrofit.Builder().baseUrl("http://192.168.43.146:8080/untitled1_war/servlet/")
                 .addConverterFactory(GsonConverterFactory.create()).build()
         var service = retrofit.create(ImgService::class.java)
         val call: Call<ResponseBody> = service.upload(description,description2, body)

@@ -11,6 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 class FruitAdapter(val fruitList: List<Fruit>,val previous:String ) : RecyclerView.Adapter<FruitAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -35,6 +39,35 @@ class FruitAdapter(val fruitList: List<Fruit>,val previous:String ) : RecyclerVi
                 var intent=Intent(fruit.cont,CreateFolderActivity2::class.java)
                 intent.putExtra("previous",previous)
                 fruit.cont.startActivity(intent)
+            }else if(position==2){
+                val lService = LoginActivity.retrofit.create(LogoutService::class.java)
+                lService.logout(FolderActivity2.username).enqueue(
+                    object : Callback<FeedBack>{
+                        override fun onFailure(call: Call<FeedBack>, t: Throwable) {
+                            Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onResponse(
+                            call: Call<FeedBack>,
+                            response: Response<FeedBack>
+                        ) {
+                            var fb=response.body()
+                            if (fb!=null){
+                                if(fb.status.equals("success")){
+                                    Toast.makeText(parent.context, "注销成功", Toast.LENGTH_SHORT).show()
+                                    var intent=Intent(fruit.cont,LoginActivity::class.java)
+
+                                    fruit.cont.startActivity(intent)
+                                }else{
+                                    Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+                                }
+                            }else{
+                                Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                    }
+                )
             }else{
 if(fruit.imgurl.equals("_")){
     var intent=Intent(fruit.cont,FolderActivity2::class.java)
@@ -60,6 +93,36 @@ if(fruit.imgurl.equals("_")){
                 var intent=Intent(fruit.cont,CreateFolderActivity2::class.java)
                 intent.putExtra("previous",previous)
                 fruit.cont.startActivity(intent)
+            }else if(position==2){
+                val lService = LoginActivity.retrofit.create(LogoutService::class.java)
+                lService.logout(FolderActivity2.username).enqueue(
+                    object : Callback<FeedBack>{
+                        override fun onFailure(call: Call<FeedBack>, t: Throwable) {
+                            Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+                        }
+
+                        override fun onResponse(
+                            call: Call<FeedBack>,
+                            response: Response<FeedBack>
+                        ) {
+                            var fb=response.body()
+                            if (fb!=null){
+                                if(fb.status.equals("success")){
+                                    Toast.makeText(parent.context, "注销成功", Toast.LENGTH_SHORT).show()
+                 var intent=Intent(fruit.cont,LoginActivity::class.java)
+
+                fruit.cont.startActivity(intent)
+                                }else{
+                                    Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+                                }
+                            }else{
+                                Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                    }
+                )
+
             }else{
                 if(fruit.imgurl.equals("_")){
                     var intent=Intent(fruit.cont,FolderActivity2::class.java)
@@ -84,8 +147,10 @@ if(fruit.imgurl.equals("_")){
             holder.fruitImage.setImageResource(R.drawable.folder)
         }else if(fruit.imgurl.equals("__")){           //只有添加图片按钮或添加文件夹按钮的两个ItemView的url值为"__"（两个连续的下划线）,imgurl为"__"时，必为添加图片按钮或添加文件夹按钮
             holder.fruitImage.setImageResource(R.drawable.add) //对，我把添加图片按钮，添加文件夹按钮，图片，文件夹，全都放在一个recyclerView里面显示
+        }else if(fruit.imgurl.equals("___")){               //是三条下划线时，该itemView表示一键注销，图片设置为注销的图片
+            holder.fruitImage.setImageResource(R.drawable.out)
         }else{
-            val imageUri: Uri =               //imgurl既不是"_"(单下划线）也不是"__"（两个连续的下划线），则只剩下图片了，图片的imgurl里面存这真正的图片地址，http开头
+            val imageUri: Uri =               //imgurl既不是"_"(单下划线）也不是"__"（两个连续的下划线）或三条，则只可能是图片了，图片的imgurl里面存这真正的图片地址，http开头
                 Uri.parse(fruit.imgurl)    //用Glide加载url,因为URI是URL的父类，所以可以直接那URL的String类型的字符串，parse转化成Uri对象
             Glide.with(fruit.cont).load(imageUri)
                 .into(holder.fruitImage)

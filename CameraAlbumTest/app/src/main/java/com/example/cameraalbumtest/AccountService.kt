@@ -8,4 +8,5 @@ interface AccountService {
 
    @GET("Database")
 fun sendAccountMsg(@Query("aim") aim: String,@Query("name") name: String,@Query("password") pwd: String): Call<FeedBack>
+
 }
