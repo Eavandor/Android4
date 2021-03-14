@@ -77,7 +77,7 @@ class FolderActivity2 : AppCompatActivity() {
             Fruit(
                 "添加文件夹",   //点击recyclerView中的第0项，进入添加文件夹的Acticvity
                 R.drawable.add,
-                "http://192.168.43.146:8080/untitled1_war/drawables/add.jpg",
+                "__",
                 cont
             )
         )
@@ -85,7 +85,7 @@ class FolderActivity2 : AppCompatActivity() {
             Fruit(
                 "添加图片",   //点击recyclerView中的第1项，进入添加图片的Acticvity
                 R.drawable.add,
-                "http://192.168.43.146:8080/untitled1_war/drawables/add.jpg",
+                "__",
                 cont
             )
         )

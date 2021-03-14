@@ -40,34 +40,39 @@ class FruitAdapter(val fruitList: List<Fruit>,val previous:String ) : RecyclerVi
                 intent.putExtra("previous",previous)
                 fruit.cont.startActivity(intent)
             }else if(position==2){
-                val lService = LoginActivity.retrofit.create(LogoutService::class.java)
-                lService.logout(FolderActivity2.username).enqueue(
-                    object : Callback<FeedBack>{
-                        override fun onFailure(call: Call<FeedBack>, t: Throwable) {
-                            Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
-                        }
-
-                        override fun onResponse(
-                            call: Call<FeedBack>,
-                            response: Response<FeedBack>
-                        ) {
-                            var fb=response.body()
-                            if (fb!=null){
-                                if(fb.status.equals("success")){
+//                val lService = LoginActivity.retrofit.create(LogoutService::class.java)
+//                lService.logout(FolderActivity2.username).enqueue(
+//                    object : Callback<FeedBack>{
+//                        override fun onFailure(call: Call<FeedBack>, t: Throwable) {
+//                            Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+//                        }
+//
+//                        override fun onResponse(
+//                            call: Call<FeedBack>,
+//                            response: Response<FeedBack>
+//                        ) {
+//                            var fb=response.body()
+//                            if (fb!=null){
+//                                if(fb.status.equals("success")){
+//                                    Toast.makeText(parent.context, "注销成功", Toast.LENGTH_SHORT).show()
+//                                    var intent=Intent(fruit.cont,LoginActivity::class.java)
+//
+//                                    fruit.cont.startActivity(intent)
+//                                }else{
+//                                    Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+//                                }
+//                            }else{
+//                                Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+//                            }
+//                        }
+//
+//                    }
+//                )
                                     Toast.makeText(parent.context, "注销成功", Toast.LENGTH_SHORT).show()
                                     var intent=Intent(fruit.cont,LoginActivity::class.java)
 
                                     fruit.cont.startActivity(intent)
-                                }else{
-                                    Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
-                                }
-                            }else{
-                                Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
-                            }
                         }
-
-                    }
-                )
             }else{
 if(fruit.imgurl.equals("_")){
     var intent=Intent(fruit.cont,FolderActivity2::class.java)
@@ -94,35 +99,38 @@ if(fruit.imgurl.equals("_")){
                 intent.putExtra("previous",previous)
                 fruit.cont.startActivity(intent)
             }else if(position==2){
-                val lService = LoginActivity.retrofit.create(LogoutService::class.java)
-                lService.logout(FolderActivity2.username).enqueue(
-                    object : Callback<FeedBack>{
-                        override fun onFailure(call: Call<FeedBack>, t: Throwable) {
-                            Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
-                        }
-
-                        override fun onResponse(
-                            call: Call<FeedBack>,
-                            response: Response<FeedBack>
-                        ) {
-                            var fb=response.body()
-                            if (fb!=null){
-                                if(fb.status.equals("success")){
-                                    Toast.makeText(parent.context, "注销成功", Toast.LENGTH_SHORT).show()
-                 var intent=Intent(fruit.cont,LoginActivity::class.java)
+//                val lService = LoginActivity.retrofit.create(LogoutService::class.java)
+//                lService.logout(FolderActivity2.username).enqueue(
+//                    object : Callback<FeedBack>{
+//                        override fun onFailure(call: Call<FeedBack>, t: Throwable) {
+//                            Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+//                        }
+//
+//                        override fun onResponse(
+//                            call: Call<FeedBack>,
+//                            response: Response<FeedBack>
+//                        ) {
+//                            var fb=response.body()
+//                            if (fb!=null){
+//                                if(fb.status.equals("success")){
+//                                    Toast.makeText(parent.context, "注销成功", Toast.LENGTH_SHORT).show()
+//                 var intent=Intent(fruit.cont,LoginActivity::class.java)
+//
+//                fruit.cont.startActivity(intent)
+//                                }else{
+//                                    Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+//                                }
+//                            }else{
+//                                Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
+//                            }
+//                        }
+//
+//                    }
+//                )
+                Toast.makeText(parent.context, "注销成功", Toast.LENGTH_SHORT).show()
+                var intent=Intent(fruit.cont,LoginActivity::class.java)
 
                 fruit.cont.startActivity(intent)
-                                }else{
-                                    Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
-                                }
-                            }else{
-                                Toast.makeText(parent.context, "注销失败", Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                    }
-                )
-
             }else{
                 if(fruit.imgurl.equals("_")){
                     var intent=Intent(fruit.cont,FolderActivity2::class.java)

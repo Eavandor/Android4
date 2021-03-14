@@ -1,3 +1,4 @@
+
 package com.example.cameraalbumtest
 
 import android.content.Intent
@@ -41,8 +42,6 @@ val client: OkHttpClient=OkHttpClient.Builder().connectTimeout(5,TimeUnit.SECOND
         findViewById<Button>(R.id.button).setOnClickListener {
             var n = findViewById<EditText>(R.id.editText).text.toString()
             var p = findViewById<EditText>(R.id.writePassword).text.toString()
-
-
 
             if (n == "" || p == "") {           //密码或用户名为空，弹窗提示
                 Toast.makeText(this, "用户名与密码均不能为空", Toast.LENGTH_LONG).show()
