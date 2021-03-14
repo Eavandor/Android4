@@ -72,7 +72,6 @@ class FruitAdapter(val fruitList: List<Fruit>,val previous:String ) : RecyclerVi
                                     var intent=Intent(fruit.cont,LoginActivity::class.java)
 
                                     fruit.cont.startActivity(intent)
-                        }
             }else{
 if(fruit.imgurl.equals("_")){
     var intent=Intent(fruit.cont,FolderActivity2::class.java)
